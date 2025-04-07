@@ -39,3 +39,14 @@ function completeOrder(id) {
     console.log(`Order ${id} not found.`);
   }
 }
+
+addNewPizza({ name: "Hawaiian", price: 12 });
+addNewPizza({ name: "BBQ Chicken", price: 11 });
+addNewPizza({ name: "Pepperoni", price: 10 });
+
+placeOrder("Margherita");
+completeOrder(1);
+
+console.log("Current menu:", menu);
+console.log("Cash in register:", cashInRegister);
+console.log("Order queue:", orderQueue);
