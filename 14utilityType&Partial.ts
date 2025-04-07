@@ -19,7 +19,7 @@ const users3: User3[] = [
   { id: 4, username: "charlie_brown", role: "member" },
 ];
 
-function updateUser(id: any, updates: UpdatedUser) {
+function updateUser2(id: any, updates: UpdatedUser) {
   // Find the user in the array by the id
   // Use Object.assign to update the found user in place.
   // Check MDN if you need help with using Object.assign
@@ -32,7 +32,7 @@ function updateUser(id: any, updates: UpdatedUser) {
 }
 
 // Example updates:
-updateUser(1, { username: "new_john_doe" });
-updateUser(4, { role: "contributor" });
+updateUser2(1, { username: "new_john_doe" });
+updateUser2(4, { role: "contributor" });
 
 console.log(users);
