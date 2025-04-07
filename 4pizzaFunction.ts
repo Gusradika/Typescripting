@@ -10,7 +10,8 @@ type Pizza = {
 type Order = {
   id: number;
   pizza: Pizza;
-  status: string;
+  status: "ordered" | "completed";
+  // status: string; // This is not a good practice, as it can lead to errors and make the code less readable.
 };
 
 const menu = [
@@ -35,7 +36,13 @@ function placeOrder(pizzaName: string) {
     return;
   }
   cashInRegister += selectedPizza.price;
-  const newOrder = {
+  // Error
+  // const newOrder = {
+  //   id: nextOrderId++,
+  //   pizza: selectedPizza,
+  //   status: "ordered",
+  // };
+  const newOrder: Order = {
     id: nextOrderId++,
     pizza: selectedPizza,
     status: "ordered",
@@ -45,6 +52,7 @@ function placeOrder(pizzaName: string) {
 }
 
 function completeOrder(orderId: number) {
+  // Automatically refered to Order type because of the orderQueue type
   const order = orderQueue.find((order) => order.id === orderId);
   if (!order) {
     console.error(`Order with ID ${orderId} not found`);
