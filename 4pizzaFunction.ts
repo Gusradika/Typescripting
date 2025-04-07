@@ -1,9 +1,7 @@
 /**
- * Challenge: Create a Pizza object type. It should include a `name`
- * and a `price` property.
+ * Challenge: Fix the TS warnings about orderQueue!
  */
 
-// Custom Type
 type Pizza = {
   name: string;
   price: number;
@@ -12,7 +10,7 @@ type Pizza = {
 type Order = {
   id: number;
   pizza: Pizza;
-  status: "ordered" | "completed";
+  status: string;
 };
 
 const menu = [
@@ -22,9 +20,9 @@ const menu = [
   { name: "Veggie", price: 9 },
 ];
 
-let cashInRegister: number = 100;
+let cashInRegister = 100;
 let nextOrderId = 1;
-const orderQueue: Order = [];
+const orderQueue: Order[] = [];
 
 function addNewPizza(pizzaObj: Pizza) {
   menu.push(pizzaObj);
@@ -48,6 +46,11 @@ function placeOrder(pizzaName: string) {
 
 function completeOrder(orderId: number) {
   const order = orderQueue.find((order) => order.id === orderId);
+  if (!order) {
+    console.error(`Order with ID ${orderId} not found`);
+    throw new Error();
+  }
+  // is Possibly undefined is because it has not been checked if the order is undefined | or not. Error Check
   order.status = "completed";
   return order;
 }
