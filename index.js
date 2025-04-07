@@ -1,0 +1,41 @@
+const menu = [
+  { name: "Margherita", price: 8 },
+  { name: "Normal", price: 7 },
+  { name: "Medium", price: 10 },
+  { name: "Veggie", price: 9 },
+];
+
+const cashInRegister = 100;
+
+const orderQueue = [];
+const nextOrderId = 1;
+
+function addNewPizza(pizzaObj) {
+  menu.push(pizzaObj);
+}
+
+function placeOrder(pizzaName) {
+  const pizza = menu.find((pizza) => pizza.name === pizzaName);
+  if (pizza) {
+    let data = {
+      id: nextOrderId++,
+      name: pizza.name,
+      status: "ordered",
+    };
+    orderQueue.push(data);
+    cashInRegister += pizza.price;
+    console.log(`Order placed for ${pizzaName}.`);
+  } else {
+    console.log(`Sorry, we don't have ${pizzaName} on the menu.`);
+  }
+}
+
+function completeOrder(id) {
+  const order = orderQueue.find((order) => order.id === id);
+  if (order) {
+    order.status = "completed";
+    console.log(`Order ${id} completed.`);
+  } else {
+    console.log(`Order ${id} not found.`);
+  }
+}
